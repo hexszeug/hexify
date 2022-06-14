@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Hexify</title>
+        <link rel="stylesheet" href="frameworks/bulma.min.css">
+        <link rel="stylesheet" href="/styles/style.css">
+        <script src="frameworks/jquery-3.6.0.min.js"></script>
+        <script src="/scripts/main.js"></script>
+        <script src="/scripts/api_client.js"></script>
+        <script src="/scripts/player_info.js"></script>
+        <script src="/scripts/player_actions.js"></script>
+        <script src="/scripts/link.js"></script>
+        <script src="/scripts/search.js"></script>
+        <script src="/scripts/browse.js"></script>
+        <script src="/scripts/libary.js"></script>
+    </head>
+    <body class="is-unselectable">
+        <!--Navbar-->
+        <div class="navbar is-light">
+            <div class="navbar-brand">
+                <div class="navbar-item">
+                    <a class="title has-text-primary">
+                        <img src="/assets/logo.png">
+                        Hexify
+                    </a>
+                </div>
+                <a class="navbar-burger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </a>
+            </div>
+            <div class="navbar-menu">
+                <div class="navbar-end">
+                    <div class="navbar-item">
+                        <button id="account" class="button is-primary">Account</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--Modals-->
+        <div id="accountModal" class="modal">
+            <div class="modal-background"></div>
+            <div class="modal-content box">
+                <div class="field">
+                    <label class="label is-large">Client ID:</label>
+                    <input id="clientId" class="input is-rounded is-large" type="text">
+                </div>
+                <div class="field">
+                    <label class="label is-large">Client Secret:</label>
+                    <input id="clientSecret" class="input is-rounded is-large" type="password">
+                </div>
+                <button id="logIn" class="field button is-large is-rounded is-fullwidth is-primary">Log in</button>
+                <button id="refreshAccessToken" class="field button is-large is-rounded is-fullwidth is-warning is-light">Refresh token</button>
+            </div>
+            <div class="modal-close is-large"></div>
+        </div>
+        <div id="coverModal" class="modal">
+            <div class="modal-background"></div>
+            <div class="modal-content">
+                <img class="cover-large">
+            </div>
+            <div class="modal-close is-large"></div>
+        </div>
+        <!--Context Menu-->
+        <div class="dropdown context-menu">
+            <div class="dropdown-menu">
+                <div class="dropdown-content"></div>
+            </div>
+        </div>
+        <!--Content Header-->
+        <div class="only-logged-in">
+            <div class="tabs mode-tabs">
+                <ul>
+                    <li data-mode="start" class="is-active"><div style="width: 2rem;"></div></li>
+                    <li data-mode="search"><a>Search</a></li>
+                    <li data-mode="libary"><a>Libary</a></li>
+                    <li data-mode="browse"><a>Browse</a></li>
+                </ul>
+            </div>
+        </div>
+        <!--Content-->
+        <div class="modes only-logged-in">
+            <div class="search is-hidden">
+                <div class="level">
+                    <div class="level-left"></div>
+                    <div class="level-item">
+                        <input class="input search-bar" type="text" placeholder="Songs, Artists, Albums, Playlists, ...">
+                    </div>
+                    <div class="level-right"></div>
+                </div>
+                <div class="search-content">
+                    <div class="tracks"></div>
+                    <div class="artists"></div>
+                    <div class="albums"></div>
+                    <div class="playlists"></div>
+                </div>
+            </div>
+            <div class="libary is-hidden"></div>
+            <div class="browse is-hidden">
+                <div class="browse-history has-background-primary-light">
+                    <span class="delete left browse-history-back"></span>
+                    <span class="delete right browse-history-forward"></span>
+                </div>
+                <div class="section browse-header has-background-primary-light">
+                    <div class="columns">
+                        <div class="column is-narrow">
+                            <figure class="image">
+                                <img class="browse-cover">
+                            </figure>
+                        </div>
+                        <div class="column align-content-bottom">
+                            <div class="subtitle browse-type is-size-6 is-uppercase"></div>
+                            <div class="title browse-name"></div>
+                            <div class="subtitle browse-info is-size-5"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="level browse-action-bar">
+                    <div class="level-left"></div>
+                    <div class="level-right"></div>
+                </div>
+                <section class="section is-small">
+                    <div class="browse-content"></div>
+                </section>
+            </div>
+            <div class="start">
+                <h1 class="title">Welcome to HEXIFY</h1>
+            </div>
+        </div>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <!--Player-->
+        <section id="player" class="section">
+            <div class="opened-medium-cover is-hidden">
+                <img class="cover-medium"><div class="delete down offset close-medium-cover is-hidden"></div>
+            </div>
+            <div class="columns is-vcentered has-background-primary-light">
+                <div class="column is-2">
+                    <div class="columns is-vcentered">
+                        <div class="column is-narrow closed-medium-cover">
+                            <img class="cover-small link current-context"><div class="delete up offset open-medium-cover is-hidden"></div>
+                        </div>
+                        <div class="column">
+                            <p class="title is-size-4 playing-song"></p>
+                            <p class="subtitle is-size-6 ">
+                                <span class="playing-tags"></span>
+                                <span class="playing-artist"></span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="column is-8">
+                    <div class="columns">
+                        <div class="column"></div>
+                        <div class="column is-narrow">
+                            <button class="button is-secondary is-rounded is-small shuffle false">Off</button>
+                            <button class="button is-secondary is-rounded is-small shuffle true is-hidden">Shuffle</button>
+                            <button class="button is-secondary is-rounded is-small previous">Previous</button>
+                            <button class="button is-primary is-rounded is-small pp play">Play</button>
+                            <button class="button is-secondary is-rounded is-small pp pause is-hidden">Pause</button>
+                            <button class="button is-secondary is-rounded is-small next">Next</button>
+                            <button class="button is-secondary is-rounded is-small repeat off">Off</button>
+                            <button class="button is-secondary is-rounded is-small repeat context is-hidden">Context</button>
+                            <button class="button is-secondary is-rounded is-small repeat track is-hidden">Track</button>
+                        </div>
+                        <div class="column"></div>
+                    </div>
+                    <div class="level is-unselectable">
+                        <div class="level-left">
+                            <span class="level-item song-time"></span>
+                        </div>
+                        <div class="level-item progress-container">
+                            <progress class="progress is-primary is-small song-progress"></progress>
+                            <span class="progress-dot"></span>
+                        </div>
+                        <div class="level-right">
+                            <span class="level-item song-duration"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="column"></div>
+                <div class="column is-narrow">
+                    <div class="dropdown is-up is-right is-hoverable">
+                        <div class="dropdown-trigger">
+                            Devices
+                        </div>
+                        <div class="dropdown-menu refresh-devices">
+                            <div class="dropdown-content">
+                                <div class="dropdown-item refresh-devices has-text-dark">Devices</div>
+                                <div class="dropdown-divider"></div>
+                                <div class="devices"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="column is-narrow">
+                    <p></p>
+                </div>
+            </div>
+        </section>
+    </body>
+</html>

@@ -1,0 +1,213 @@
+#player {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+
+    width: 100%;
+}
+
+.context-menu {
+    position: absolute;
+}
+
+.context-menu div.dropdown-item {
+    cursor: not-allowed;
+}
+
+.column.is-fullheight {
+    display: flex;
+}
+
+.column.align-content-bottom {
+    height: auto !important;
+    margin-top: auto;
+}
+
+div.box.is-fullwidth {
+    width: 100%;
+}
+
+.browse-history {
+    padding-top: 1rem;
+    padding-left: 3.5rem;
+    margin-bottom: -2rem;
+}
+
+.browse-header {
+    height: 25rem;
+}
+
+.browse-header .column, .browse-header .columns, .browse-header .image {
+    height: 100%;
+}
+
+.browse-cover {
+    height: 100% !important;
+}
+
+.browse-action-bar {
+    margin-top: 1rem;
+    margin-left: 2rem;
+    margin-right: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.track-list td {
+    vertical-align: middle;
+    height: 85px;
+    overflow: hidden;
+}
+
+.three-dots {
+    transition-duration: 250ms;
+    transition-property: transform;
+}
+
+.three-dots > * {
+    display: inline-block;
+    width: 3px;
+    height: 3px;
+    border-radius: 99px;
+    background-color: black;
+    margin: 1.5px;
+}
+
+.three-dots:hover {
+    transform: scale(1.2, 1.2);
+}
+
+.box.link {
+    transition-duration: 250ms;
+    transition-property: transform;
+}
+
+.box.link:hover {
+    transform: scale(1.025, 1.025);
+}
+
+.image.is-256x256 {
+    height: 256px;
+    width: 256px;
+}
+
+.image.is-256x256 img {
+    object-fit: cover;
+    width: 256px;
+    height: 256px;
+}
+
+.search .level {
+    margin-top: 1rem;
+    margin-left: 5rem;
+    margin-right: 5rem;
+    margin-bottom: 2rem;
+}
+
+span.link:hover, p.link:hover {
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.dropdown-trigger {
+    cursor: default;
+}
+
+.progress-container {
+    overflow: hidden;
+    margin-bottom: -1.75rem;
+}
+
+.song-progress {
+    margin-left: 0.25rem;
+    margin-right: 0.25rem;
+}
+
+.progress-dot {
+    display: none;
+    background-color: #363636;
+    position: fixed;
+    border: 0;
+
+    border-radius: 0.5rem;
+    height: 1rem;
+    max-height: 1rem;
+    min-height: 1rem;
+    width: 1rem;
+    max-width: 1rem;
+    min-width: 1rem;
+}
+
+.song-progress:hover + .progress-dot {
+    display: inline;
+}
+
+.progress-dot:hover {
+    display: inline;
+}
+
+.only-logged-in {
+    display: none;
+}
+
+.opened-medium-cover {
+    width: max-content;
+}
+
+.delete.offset {
+    position: relative;
+    top: 0.25rem;
+    left: -1.5rem;
+    margin: 0;
+    border: 0;
+    padding: 0;
+    margin-right: -20px;
+    margin-bottom: -20px;
+}
+
+.delete.down::before {
+    height: 2px;
+    width: 50%;
+    left: 35%;
+}
+
+.delete.down::after {
+    height: 50%;
+    width: 2px;
+    left: 65%;
+}
+
+.delete.up::before {
+    height: 50%;
+    width: 2px;
+    left: 35%;
+}
+
+.delete.up::after {
+    height: 2px;
+    width: 50%;
+    left: 65%;
+}
+
+.delete.right::before {
+    height: 2px;
+    width: 50%;
+    top: 35%;
+}
+
+.delete.right::after {
+    height: 50%;
+    width: 2px;
+    top: 65%;
+}
+
+.delete.left::before {
+    height: 50%;
+    width: 2px;
+    top: 35%;
+}
+
+.delete.left::after {
+    height: 2px;
+    width: 50%;
+    top: 65%;
+}
