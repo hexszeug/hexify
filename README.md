@@ -1,7 +1,18 @@
 # Hexify
 
-This is a learn by doing project to learn fetching data from REST Api's and displaying it on a webapp.
-It uses to Spotify Developer API to provide control over the player of your Spotify account.
+Note: This is a learn by doing project to learn fetching data from REST Api's and displaying it on a webapp, so it is relativly buggy.
+
+This is an "almost" Spotify Client, which can't stream audio from Spotify.
+It uses the Spotify Developer API to provide control over the following Spotify actions:
+
+- the player
+  - pause/resume
+  - skip to next/previous track
+  - toggle shuffle and repeat mode
+  - seek to timestamp in track
+- search songs, artists, playlists and albums
+- start playing songs, playlists and albums
+- select the streaming device
 
 The api app to provide access to the Spotify API is in developer state,
 so I'd have to add each Spotify Account who should be able to use Hexify to the Developer App.
